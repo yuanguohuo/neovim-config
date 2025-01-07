@@ -40,5 +40,7 @@ return {
         }
 
         lsp_conf.ccls.setup(ccls_opts)
+
+        vim.opt.signcolumn = 'yes'
     end
 }
