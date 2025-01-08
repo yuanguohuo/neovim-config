@@ -7,6 +7,8 @@ local function lualine_config()
             icons_enabled = true,
             -- theme  = custom_gruvbox,
             -- theme = 'auto',
+            -- theme = 'Tomorrow',
+            -- theme = 'powerline',
             theme = 'gruvbox_dark',
             component_separators = { left = '', right = ''},
             section_separators = { left = '', right = ''},
@@ -27,7 +29,7 @@ local function lualine_config()
         sections = {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
-            lualine_c = {'filename'},
+            lualine_c = {{'filename', file_status=true, path=2}},  -- path: 0 -> just filename; 1 -> relative path; 2 -> absolute path
             lualine_x = {'encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
             lualine_z = {'location'}
