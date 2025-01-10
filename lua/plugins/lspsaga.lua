@@ -203,6 +203,7 @@ return {
 		vim.keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<CR>')
 		vim.keymap.set('n', 'gc', '<cmd>Lspsaga incoming_calls<CR>')
 		vim.keymap.set('n', 'go', '<cmd>Lspsaga outline<CR>')
+		vim.keymap.set('n', 'gh', '<cmd>Lspsaga hover_doc<CR>')
 	end,
 	dependencies = {
 		"neovim/nvim-lspconfig",
