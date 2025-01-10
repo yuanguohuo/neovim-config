@@ -69,8 +69,8 @@ local lspsaga_opts = {
     },
     request_timeout = 2000,
     finder = {
-        max_height = 0.5,
-        left_width = 0.4,
+        max_height = 0.9,
+        left_width = 0.15,
         methods = {},
         default = 'ref+imp',
         layout = 'float',
@@ -89,7 +89,7 @@ local lspsaga_opts = {
             split = 'i',
             tabe = 't',
             tabnew = 'r',
-            quit = 'q',
+            quit = {'q', '<ESC>'},
             close = '<C-c>k',
         },
     },
@@ -115,7 +115,7 @@ local lspsaga_opts = {
         project_max_width = 0.5,
         project_max_height = 0.5,
         keys = {
-            quit = '<C-k>',
+            quit = '<ESC>',
             exec = '<CR>',
             select = 'x',
         },
@@ -142,20 +142,20 @@ local lspsaga_opts = {
         left_width = 0.3,
         keys = {
             toggle_or_jump = 'o',
-            quit = 'q',
+            quit = {'q', '<ESC>'},
             jump = 'e',
         },
     },
     callhierarchy = {
         layout = 'float',
-        left_width = 0.2,
+        left_width = 0.15,
         keys = {
             edit = 'e',
             vsplit = 's',
             split = 'i',
             tabe = 't',
             close = '<C-c>k',
-            quit = 'q',
+            quit = {'q', '<ESC>'},
             shuttle = '[w',
             toggle_or_req = 'u',
         },
@@ -198,6 +198,7 @@ return {
 		saga.setup(lspsaga_opts)
 
 		vim.keymap.set('n', 'gf', '<cmd>Lspsaga finder<CR>')
+		vim.keymap.set('n', 'gi', '<cmd>Lspsaga finder imp<CR>')
 		vim.keymap.set('n', 'gr', '<cmd>Lspsaga rename<CR>')
 		vim.keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<CR>')
 		vim.keymap.set('n', 'gc', '<cmd>Lspsaga incoming_calls<CR>')
