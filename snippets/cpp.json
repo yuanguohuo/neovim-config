@@ -1,0 +1,19 @@
+{
+  "Class": {
+    "prefix": ["class"],
+    "body": [
+      "class ${1:ClassName} : public ${2:ParentClassName} {",
+          "private:",
+		  "    ${3:FieldType} ${4:FieldName};",
+          "public:",
+		  "    //${1:ClassName}() = default;",
+		  "    ${1:ClassName}(const ${1:ClassName}& o) = default;",
+		  "    ${1:ClassName}(${1:ClassName}&& o) = default;",
+		  "    ${1:ClassName}& operator=(const ${1:ClassName}& o) = default;",
+		  "    ${1:ClassName}& operator=(${1:ClassName}&& o) = default;",
+		  "    ~${1:ClassName}() = default;",
+		  "    ${1:ClassName}(${3:FieldType} ${4:FieldName}) : ${2:ParentClassName}(${5:parentCtorArgs}), ${4:FieldName}(${4:FieldName}) {}",
+      "};"
+    ]
+  }
+}

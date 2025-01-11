@@ -1,33 +1,35 @@
 local function vsnip_config()
-	vim.cmd([[
-	    imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-	    smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+    vim.cmd([[
+        let g:vsnip_snippet_dir = '~/.config/nvim/snippets'
 
-	    " Expand or jump
-	    imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-	    smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+        " Expand
+        "imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+        "smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 
-	    " Jump forward or backward
-	    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-	    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-	    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-	    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        " Expand or jump
+        "imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+        "smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
-	    " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-	    " See https://github.com/hrsh7th/vim-vsnip/pull/50
-	    nmap        s   <Plug>(vsnip-select-text)
-	    xmap        s   <Plug>(vsnip-select-text)
-	    nmap        S   <Plug>(vsnip-cut-text)
-	    xmap        S   <Plug>(vsnip-cut-text)
+        " Jump forward or backward
+        "imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        "smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        "imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        "smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-	    let g:vsnip_snippet_dir = '~/snippets-vsnip'
-	]])
+        " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+        " See https://github.com/hrsh7th/vim-vsnip/pull/50
+        nmap        s   <Plug>(vsnip-select-text)
+        xmap        s   <Plug>(vsnip-select-text)
+        nmap        S   <Plug>(vsnip-cut-text)
+        xmap        S   <Plug>(vsnip-cut-text)
+    ]])
 end
 
 return {
-	"hrsh7th/vim-vsnip",
+    "hrsh7th/vim-vsnip",
     dependencies = {
         "hrsh7th/vim-vsnip-integ",
+        "rafamadriz/friendly-snippets",
     },
     config = vsnip_config,
 }

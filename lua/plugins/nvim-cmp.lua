@@ -1,6 +1,26 @@
 local function cmp_config()
     local cmp = require'cmp'
 
+    local jump_to_next = function(fallback)
+        if vim.fn["vsnip#jumpable"](1) == 1 then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-jump-next)', true, true, true), '', true)
+        elseif cmp.visible() then
+            cmp.select_next_item()
+        else
+            fallback()
+        end
+    end
+
+    local jump_to_prev = function(fallback)
+        if vim.fn["vsnip#jumpable"](-1) == 1 then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-jump-prev)', true, true, true), '', true)
+        elseif cmp.visible() then
+            cmp.select_prev_item()
+        else
+            fallback()
+        end
+    end
+
     cmp.setup({
         snippet = {
             -- REQUIRED - you must specify a snippet engine
@@ -16,15 +36,17 @@ local function cmp_config()
             -- completion = cmp.config.window.bordered(),
             -- documentation = cmp.config.window.bordered(),
         },
+
         mapping = cmp.mapping.preset.insert({
             ['<C-b>']     = cmp.mapping.scroll_docs(-4),
             ['<C-f>']     = cmp.mapping.scroll_docs(4),
-            ['<C-p>']     = cmp.mapping.select_prev_item(),
-            ['<C-n>']     = cmp.mapping.select_next_item(),
-            ['<Tab>']     = cmp.mapping.select_next_item(),
             ['<C-Space>'] = cmp.mapping.complete(),
+            ['<CR>']      = cmp.mapping.confirm({select = true}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<C-e>']     = cmp.mapping.abort(),
             ['<ESC>']     = cmp.mapping.abort(),
-            ['<CR>']      = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ["<Tab>"]     = cmp.mapping(jump_to_next, {"i", "s"}),
+            ["<C-n>"]     = cmp.mapping(jump_to_next, {"i", "s"}),
+            ["<C-p>"]     = cmp.mapping(jump_to_prev, {"i", "s"}),
         }),
 
         sources = cmp.config.sources({
