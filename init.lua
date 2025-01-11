@@ -12,6 +12,11 @@ vim.o.mouse = ''
 -- line number
 vim.o.number = true
 
+-- when 'confirm' is on, certain operations that would normally fail because of unsaved changes
+-- to a buffer, e.g. ":q" and ":e", instead raise a dialog asking if you wish to save the current
+-- file(s). You can still use a ! to unconditionally |abandon| a buffer.
+vim.o.confirm = true
+
 -- whether a window has a status line.
 --  0: A window never has a status line;
 --  1: If there are more than one windows, each has a status line;
